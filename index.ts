@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { DBClient, getUsers } from './db';
 const app = express()
 
 const serverName: string = 'Hello World';
@@ -23,6 +24,13 @@ app.get('/add', (req: Request, res: Response) => {
     const b = parseInt(url.searchParams.get('b') || '0');
     res.json({ message: 'Addition', result: a + b })
 });
+
+app.get('/api/users', async (req: Request, res: Response) => {
+    await DBClient.getInstance().connect();
+    const users = await getUsers();
+    res.json({ message: 'List of users', users: users })
+});
+
 
 
 app.listen(13005, () => {

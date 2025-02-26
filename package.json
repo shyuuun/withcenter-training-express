@@ -11,10 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@types/express-serve-static-core": "^5.0.6",
-    "express": "^5.0.1"
+    "express": "^5.0.1",
+    "pg": "^8.13.3",
+    "pg-pool": "^3.7.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/pg-pool": "^2.0.6",
     "@typescript-eslint/eslint-plugin": "^8.25.0",
     "@typescript-eslint/parser": "^8.25.0",
     "eslint": "^9.21.0",

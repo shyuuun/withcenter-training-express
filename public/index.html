@@ -29,6 +29,14 @@
         <p class="mt-5">Count is: {{ count }}</p>
 
         <button class="btn btn-info" @click="fetchAdd">Reset Count to: 2 + 5</button>
+
+        <hr class="my-5" />
+        <button class="btn btn-danger" @click="getUsers">Get user list</button>
+        <ul class="list-group mt-3">
+            <li class="list-group-item" v-for="user in users" :key="user.id">
+              {{ user.id }}:  {{ user.name }}
+            </li>
+        </ul>
     </div>
 
     </div>
@@ -42,6 +50,7 @@
                 return {
                     message: 'Hello Vue!',
                     count: 1,
+                    users: [],
                 }
             },
             mounted() {
@@ -52,6 +61,11 @@
                     const res = await await fetch('/add?a=2&b=5');
                     const data = await res.json();
                     this.count = data.result;
+                },
+                async getUsers() {
+                    const res = await fetch('/api/users');
+                    const data = await res.json();
+                    this.users = data.users;
                 }
             }
         }).mount('#app')
